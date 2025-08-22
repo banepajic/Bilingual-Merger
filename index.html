@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingual .docx Merger</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- JS libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <h1>Bilingual <span class="badge">.docx</span> Merger</h1>
+        <p class="muted">
+            Merge two Word files (same structure) into a single bilingual table with <code>{mlang}</code> blocks.
+            Based on your Tkinter script — but runs in the browser.
+        </p>
+
+        <div class="grid grid-files">
+            <div>
+                <label>File (Language 1)</label>
+                <input id="file1" type="file" accept=".docx" />
+            </div>
+            <div>
+                <label>File (Language 2)</label>
+                <input id="file2" type="file" accept=".docx" />
+            </div>
+        </div>
+
+        <div class="grid grid-lang">
+            <div>
+                <label>Language code for File 1 (e.g. <code>en</code>)</label>
+                <input id="lang1" type="text" placeholder="en" />
+                <small class="hint">Used as <code>{mlang &lt;code&gt;}</code></small>
+            </div>
+            <div>
+                <label>Language code for File 2 (e.g. <code>uk</code>)</label>
+                <input id="lang2" type="text" placeholder="uk" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="mergeBtn">Merge & Download</button>
+            <button id="testBtn" class="test">Run self‑tests</button>
+            <div id="status" class="status">Ready.</div>
+        </div>
+
+        <small class="hint">
+            <strong>Assumptions:</strong> All tables from both .docx files are processed. Questions are extracted from
+            the
+            <strong>second column</strong> of each table. A new question is detected automatically based on its
+            structure (typically starts with an ID).
+            Options begin with <code>A.</code>, <code>B.</code>, etc. Rows starting with <code>ANSWER</code> are copied
+            from Language 1.
+            Each table is preserved separately in the output document.
+        </small>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
